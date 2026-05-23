@@ -5,6 +5,7 @@
 #     def m1(self):
 #         print("B Class")
 #         super().m1()
+from abc import abstractmethod
 from typing import override
 
 
@@ -114,5 +115,69 @@ class Employee:
 class Manager(Employee):
     def salary(self):
         print("30000")
+        print("incentives: 100000" )
+
+# obj = Manager()
+# obj.salary();
+#
+# emp = Employee()
+# emp.salary()
+
+
+
+#  Create class University with a class variable and a class method. Inherit it into class College and access the parent’s class variable from the child class.
+
+class University:
+    x = 100
+    def display(self):
+        print("University")
+class College(University):
+    def display(self):
+        print("College")
+
+# obj = College()
+# print(obj.x)
+
+
+
+# • Create class MathOps with a static method add(a, b). Create class AdvancedOps(MathOps) and use the static method without overriding it.
+class MathOps():
+    @staticmethod
+    def add(a , b):
+        return a + b
+class AdvancedOps(MathOps):
+    pass
+obj = AdvancedOps.add(10,20)
+# print(obj)
+
+# • Create two classes Father and Mother, both defining a method skills(). Create class Child(Father, Mother) and check which skills() runs using MRO.
+class Father:
+    def skills(self):
+        print("Father Skills")
+class Mother:
+    def skills(self):
+        print("Mother Skills")
+class Child(Father,Mother):
+    pass
+obj = Child()
+# print(obj.skills())
+# • Create an abstract class Shape with an abstract method area(). Create class Rectangle(Shape) that implements the area() method.
+
+class Shape:
+    @abstractmethod
+    def area(self):
+        pass
+class Rectangle(Shape):
+    def __init__(self , length , breadth):
+        self.length = length
+        self.breadth = breadth
+    def area(self):
+        return self.length * self.breadth
+obj = Rectangle(10 , 20)
+print(obj.area())
+
+# • Create class Person with a constructor __init__(name). Create class Student(Person) with constructor __init__(name, roll). Use super() to call the parent constructor.
+
+
 
 
