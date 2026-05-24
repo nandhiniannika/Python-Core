@@ -29,7 +29,7 @@ class D(A,B,C):
     def m1(self):
         print("D")
         super().m1()
-obj=D()
+# obj=D()
 # obj.m1()
 # print(D.mro())
 #a1=A()
@@ -147,7 +147,7 @@ class MathOps():
         return a + b
 class AdvancedOps(MathOps):
     pass
-obj = AdvancedOps.add(10,20)
+# obj = AdvancedOps.add(10,20)
 # print(obj)
 
 # • Create two classes Father and Mother, both defining a method skills(). Create class Child(Father, Mother) and check which skills() runs using MRO.
@@ -159,7 +159,7 @@ class Mother:
         print("Mother Skills")
 class Child(Father,Mother):
     pass
-obj = Child()
+# obj = Child()
 # print(obj.skills())
 # • Create an abstract class Shape with an abstract method area(). Create class Rectangle(Shape) that implements the area() method.
 
@@ -173,10 +173,21 @@ class Rectangle(Shape):
         self.breadth = breadth
     def area(self):
         return self.length * self.breadth
-obj = Rectangle(10 , 20)
-print(obj.area())
+# obj = Rectangle(10 , 20)
+# print(obj.area())
 
 # • Create class Person with a constructor __init__(name). Create class Student(Person) with constructor __init__(name, roll). Use super() to call the parent constructor.
+class Person:
+    def __init__(self , name):
+        self.name = name
+class Student(Person):
+    def __init__(self , name , roll):
+        super().__init__(name)
+        self.roll = roll
+
+obj = Student("Nandhini" , 3)
+print(obj.name)
+print(obj.roll)
 
 
 
