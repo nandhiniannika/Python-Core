@@ -4,6 +4,9 @@
 # 2. Provide functions to deposit/withdraw that validate the amount.
 # 3. Prevent withdrawal if balance becomes negative.
 # 4. Show what happens if someone tries to modify balance directly and why encapsulation prevents it.
+from collections.abc import set_iterator
+
+
 class Bank:
     def __init__(self , AccNo , Balance , pin , name):
         self.AccNo = AccNo
@@ -119,12 +122,13 @@ class Product:
             self.__discount = discount
         else:
             print("Invalid Inputs")
+    @property
     def get_final_price(self):
         final = self.__price  - (self.__price * ((self.__discount) / 100))
         return final
 
 # obj = Product(10 , 70)
-# print(obj.get_final_price())
+# print(obj.get_final_price)
 
 # 6. Create a Character class
 # with:
@@ -157,6 +161,117 @@ class Character:
 # print(obj.current)
 # obj.heal(10)
 # print(obj.current)
+
+
+
+# 7. Create: • An Engine class with private state like temperature
+# • A Car class that uses an Engine but should: o Not allow users to manipulate engine temperature
+# Only expose methods like start_car() or cool_engine()
+# Demonstrate why giving direct engine access is dangerous.
+
+
+class Engine:
+    def __init__(self , temp):
+        self.__temp = temp
+    @property
+    def getTemp(self):
+        return self.__temp
+class Car:
+    def __init__(self):
+        self.__engine = Engine(30)
+    def start_car(self):
+        print("Car Started")
+
+    def cool_engine(self):
+        print("Engine needed to be cooled")
+    def showTemperature(self):
+        print(self.__engine.getTemp)
+
+# c = Car()
+# c.start_car()
+# c.cool_engine()
+# c.showTemperature()
+
+# 8. Create a ShoppingCart class
+# where:
+# • items are stored privately
+# • users cannot directly modify item list
+# • only add/remove methods are allowed
+# • provide a method to get a safe copy of the cart items (not direct reference to internal list)
+
+class ShoppingCart:
+    def __init__(self):
+        self.__items = []
+    @property
+    def get_items(self):
+        return self.__items
+    def add(self,n):
+        return self.__items.append(n)
+    def remove(self , v):
+        return self.__items.remove(v)
+
+# obj = ShoppingCart()
+# obj.add("Book")
+# obj.add("Pen")
+# obj.remove("Pen")
+# print(obj.get_items)
+
+
+# 9. Implement a class incorrectly
+# first:
+# • Attendance stored in a list
+# • Exposed directly so any outside code can modify it Then redesign properly:
+
+# class Incorrectly:
+#     def __init__(self):
+#         self.attendence = []
+#     def get(self):
+#         return self.attendence
+# obj = Incorrectly()
+# obj.attendence.append("Present")
+# obj.attendence.append("Present")
+# obj.attendence.append("Absent")
+# obj.attendence.append("Absent")
+# print(obj.get())
+
+# • Make attendance private
+# • Provide controlled methods for marking attendance only
+
+
+class Incorrectly:
+    def __init__(self):
+        self.__attendence = []
+    def mark_attendence(self , status):
+        self.__attendence.append(status)
+    @property
+    def attendence(self):
+        return self.__attendence.copy()
+        # return tuple(self.__attendence)
+
+obj = Incorrectly()
+obj.mark_attendence("Present")
+obj.mark_attendence("Absent")
+
+
+# obj.attendence.append("Absent")
+# without .copy because it modifies original list  ['Present', 'Absent', 'Absent']
+# so we use .copy that creates separate list or tuple because it is immutable
+
+# obj.attendence.append(50)
+# error because tuple is immutable
+
+# obj.attendence.append("Present")
+# it is not append in original list with .copy
+
+print(obj.attendence)
+
+
+
+
+
+
+
+
 
 
 

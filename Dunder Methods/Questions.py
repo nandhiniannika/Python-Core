@@ -305,14 +305,107 @@ class Rectangle:
 # print(obj + obj2)
 
 
+# Question 9: Laptop Specification
+# Create a class Laptop with:
+# •	attributes: brand, ram, price
+# •	method: upgrade_ram(extra_ram)
+# Implement:
+# •	__str__()
+# •	__add__() → add prices of two laptops
+# •	__mul__() → multiply price for bulk purchase
+# •	__lt__() → compare price
+# •	__eq__() → compare RAM
+# •	__getattribute__() → print access message
+# •	__setattr__() → RAM and price must be positive
+
+
+class Laptop:
+    def __init__(self , brand , ram , price):
+        self.brand = brand
+        self.ram = ram
+        self.price = price
+    def upgrade_ram(self , extra_ram):
+        self.ram += extra_ram
+        return self.ram
+    def __str__(self):
+        return f"Brand : {self.brand}, RAM : {self.ram}, Price = {self.price}"
+    def __add__(self, other):
+        return self.price + other.price
+    def __mul__(self , other):
+        return self.price * other.price
+    def __lt__(self, other):
+        return s7elf.price < other.price
+    def __eq__(self , other):
+        return self.ram == other.ram
+    def __getattribute__(self, item):
+        print("Nandhini is accessing Youuuu!!!!!!")
+        return super().__getattribute__(item)
+    def __setattr__(self, key, value):
+        if (key == "ram" or key == "price") and value < 0:
+            value = 0
+        super().__setattr__(key , value)
+l1 = Laptop("HP" , 256,60000)
+l2 = Laptop("Lenovo" , 369, 65000)
+
+print(l1 + l2)
+print(l1 * l2)
+print(l1 < l1)
+print(l1 == l2)
+print(l1)
+print(l2)
 
 
 
 
 
+# Question 10: Game Player
+# Create a class Player with:
+# •	attributes: name, health, attack_power
+# •	method: attack(enemy)
+# Implement:
+# •	__str__()
+# •	__add__() → combine attack powers
+# •	__sub__() → reduce health after attack
+# •	__gt__() → compare health
+# •	__eq__() → compare attack power
+# •	__getattr__() → return custom message for unavailable player stat
+# •	__setattr__() → health cannot go below 0
 
 
+class Player:
+    def __init__(self , name , health , attack_power):
+        self.name = name
+        self.health= health
+        self.attack_power = attack_power
+    def attack(self , enemy):
+        self.attack_power -= enemy
+        return f"{self.name} attacked {enemy.name}"
+    def __str__(self):
+        return f"Name : {self.name}, Health : {self.health}, Attack Power :{self.attack_power}"
+    def __add__(self , other):
+        return self.attack_power + other.attack_power
+    def __sub__(self , other):
+        return self.attack_power - other.attack_power
+    def __gt__(self , other):
+        return self.attack_power > other.attack_power
+    def __eq__(self , other):
+        return self.attack_power == other.attack_power
+    def __getattr__(self, item):
+        return f"{item} is Not present"
+    def __setattr__(self, key, value):
+        if key == 'health' and value < 0:
+            value = 0
+        super().__setattr__(key , value)
 
+p1 = Player("Nandhini" , 50 , 250)
+p2 = Player("Vaishnavi" , -25 , 50)
+
+# print(p1 + p2)
+# print(p1 - p2)
+# print(p1 > p2)
+# print(p1 == p2)
+# print(p1)
+# print(p2)
 
 
 

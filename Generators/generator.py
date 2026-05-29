@@ -7,10 +7,10 @@ class A:
     def __next__(self):
            if self.c < self.n:
                self.c += 1
-               return self.c
+               print(self.c)
            else:
                raise StopIteration
-#
+
 # obj = A(5)
 # for i in obj:
 #     print(i)
@@ -20,18 +20,20 @@ class Even:
         self.l = l
         self.c = 0
     def __iter__(self):
-         return self
+        return self
     def __next__(self):
-        while self.c < len(self.l):
+        while(self.c < len(self.l)):
             val = self.l[self.c]
-            self.c += 1
-            if val % 2 == 0:
+            self.c +=1
+            if  val % 2 == 0:
                 return val
+
         raise StopIteration
 
-# obj = Even([1, 2 , 3 , 4])
-# for i in obj:
-#     print(i)
+
+# obj = Even([1,2,3,4])
+# print(list(obj))
+
 
 
 class Reverse:
@@ -41,15 +43,14 @@ class Reverse:
     def __iter__(self):
         return self
     def __next__(self):
-        if not self.done:
+        if(not self.done):
             self.done = True
             return self.s[::-1]
-        raise StopIteration
+        else:
+            raise StopIteration
 
 # obj = Reverse("Nandhini")
-# for i in obj:
-#     print(i)
-
+# print(list(obj))
 
 
 
